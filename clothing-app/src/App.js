@@ -11,6 +11,9 @@ export default function App() {
   const [imageURL, setImageURL] = useState('');
   const [sizeOptions, setSizeOptions] = useState([]);
   const detectMobile = useMobileDetect();
+  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
+  console.log('cartItems', cartItems);
 
   useEffect(() => {
     fetch("https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product")
@@ -34,7 +37,7 @@ export default function App() {
               {(popupState) => (
                 <div>
                   <Link {...bindTrigger(popupState)}>
-                    <Typography align='right' variant='body2' style={{marginRight: '50px'}}>My Cart (4)</Typography>
+                    <Typography align='right' variant='body2' style={{marginRight: '50px'}}>My Cart ({cartCount})</Typography>
                   </Link>
                   {!detectMobile.isMobile() &&
                     <Popover
@@ -52,17 +55,30 @@ export default function App() {
                         boxShadow: 'none'
                       }}
                     >
-                      
-                      <Grid container>
-                        <Grid item xs={3} className='CartImage'>
-                        <img src={imageURL} alt="logo" width={60} height={100}/>
-                        </Grid>
-                        <Grid item xs={9} className='CartText'>
-                          <Typography sx={{ p: 2 }} variant='body2'>Classic Tee</Typography>
-                          <Typography variant='body2'>1 x ${price}.00</Typography>
-                          <Typography variant='body2'>Size: S</Typography>
-                        </Grid>
-                      </Grid>
+                      {cartCount > 0 &&
+                        <Box>
+                          {cartItems.map((item)=> {
+                            return (
+                              <Grid container>
+                                <Grid item xs={3} className='CartImage'>
+                                  <img src={imageURL} alt="logo" width={60} height={100}/>
+                                </Grid>
+                                <Grid item xs={9} className='CartText'>
+                                  <Typography sx={{ p: 2 }} variant='body2'>Classic Tee</Typography>
+                                  <Typography variant='body2'>{cartCount} x ${price}.00</Typography>
+                                  <Typography variant='body2'>Size: {item.size}</Typography>
+                                </Grid>
+                              </Grid>
+                            ) 
+                          })}
+                        </Box>
+                      }
+                      {cartCount === 0 && 
+                        <Box style={{margin: '30px'}}>
+                          <Typography variant='body2'>No items in the cart</Typography>
+                        </Box>
+                        
+                      } 
                     </Popover>
                   }
 
@@ -85,17 +101,30 @@ export default function App() {
                         style: { width: '70%' },
                       }}
                     >
-                      
-                      <Grid container>
-                        <Grid item xs={3} className='CartImage'>
-                        <img src={imageURL} alt="logo" width={60} height={100}/>
-                        </Grid>
-                        <Grid item xs={9} className='CartText'>
-                          <Typography sx={{ p: 2 }} variant='body2'>Classic Tee</Typography>
-                          <Typography variant='body2'>1 x ${price}.00</Typography>
-                          <Typography variant='body2'>Size: S</Typography>
-                        </Grid>
-                      </Grid>
+                      {cartCount > 0 &&
+                        <Box>
+                          {cartItems.map((item)=> {
+                            return (
+                              <Grid container>
+                                <Grid item xs={3} className='CartImage'>
+                                  <img src={imageURL} alt="logo" width={60} height={100}/>
+                                </Grid>
+                                <Grid item xs={9} className='CartText'>
+                                  <Typography sx={{ p: 2 }} variant='body2'>Classic Tee</Typography>
+                                  <Typography variant='body2'>{item.count} x ${price}.00</Typography>
+                                  <Typography variant='body2'>Size: {item.size}</Typography>
+                                </Grid>
+                              </Grid>
+                            ) 
+                          })}
+                        </Box>
+                      }
+                      {cartCount === 0 && 
+                        <Box style={{margin: '30px'}}>
+                          <Typography variant='body2'>No items in the cart</Typography>
+                        </Box>
+                        
+                      }
                     </Popover>
                   }
                   
@@ -123,9 +152,9 @@ export default function App() {
               <Typography style={{marginBottom: '15px', color: '#888888'}}>{description}</Typography>
               <Typography style={{marginBottom: '15px', color: '#888888'}}>SIZE*</Typography>
               {sizeOptions.map((size) => {
-                return <Button variant='oulined' style={{border: '2px solid #CCCCCC', margin: '5px'}} className="ButtonSizes">{size.label}</Button>
+                return <Button onClick={() => setCartItems([...cartItems, {size: size.label}])} variant='oulined' style={{border: '2px solid #CCCCCC', margin: '5px'}} className="ButtonSizes">{size.label}</Button>
               })}
-              <Button variant='outlined' style={{border: '2px solid #222222'}} sx={{':hover': {color: '#fff !important'}}} className="AddToCartButton">ADD TO CART</Button>
+              <Button variant='outlined' onClick={() => setCartCount(cartCount+1)} style={{border: '2px solid #222222'}} sx={{':hover': {color: '#fff !important'}}} className="AddToCartButton">ADD TO CART</Button>
             </Grid>
           </Grid>
       </div>
