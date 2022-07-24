@@ -13,14 +13,12 @@ export default function App() {
   const detectMobile = useMobileDetect();
   const [cartCount, setCartCount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
-  console.log('cartItems', cartItems);
 
   useEffect(() => {
     fetch("https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product")
     .then(res => res.json())
     .then(
       (result) => {
-        console.log('+++ result', result);
         setTitle(result.title);
         setDescription(result.description);
         setPrice(result.price);
