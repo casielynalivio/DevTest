@@ -1,0 +1,27 @@
+Arguments: 
+  /Users/calivio/.nvm/versions/node/v16.2.0/bin/node /usr/local/Cellar/yarn/1.19.2/libexec/bin/yarn.js add material-ui-popup-state
+
+PATH: 
+  /Users/calivio/.nvm/versions/node/v16.2.0/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/bin:/Users/calivio/apache-maven-3.2.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.19.2
+
+Node version: 
+  16.2.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND repo1.uhc.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:69:26)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

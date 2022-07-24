@@ -1,37 +1,59 @@
+*, body {
+  color: #222222 ;
+}
+
 .Container {
   margin-top: 20px;
 }
 
 .BoxImage {
-  padding: 110px;
+  padding-left: 350px;
+  padding-top: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.AddToCartButton {
+  display: block !important;
+  margin-top: 20px !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* .AddToCartButton:active {
+  background-color: #222222;
 }
 
-.App-link {
-  color: #61dafb;
+.AddToCartButton.MuiButton-label:active {
+  color: #fff !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.AddToCartButton:focus {
+  background-color: #222222;
+}
+
+.AddToCartButton.MuiButton-label:focus {
+  color: #fff !important;
+} */
+
+.ContentDetails {
+  padding: 50px 75px;
+}
+
+.Text {
+  margin-top: 5px;
+  color: #888888;
+}
+
+.CartImage {
+  padding: 20px;
+ 
+}
+
+.CartText {
+  padding: 20px 20px 20px 35px;
+}
+
+.ButtonSizes:active {
+  border: 2px solid #222222 !important;
+}
+
+.ButtonSizes:focus {
+  border: 2px solid #222222 !important;
 }
